@@ -1,0 +1,121 @@
+.footer {
+  background: #eaf2f5;
+  padding: 50px 20px 20px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center; /* center all items horizontally */
+  align-items: center;
+}
+
+/* Image */
+.footer-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+  margin: 0 auto; /* center the image */
+}
+
+/* Right content */
+.footer-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: center; /* center content horizontally */
+  text-align: center; /* center text */
+}
+
+/* Titles, tagline, socials */
+.footer-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  font-style: italic;
+  border-bottom: 2px solid #ff4d00;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.tagline {
+  margin: 10px 0 20px;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.4;
+}
+
+.social-links {
+  justify-content: center;
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.social-links a {
+  font-size: 2rem;
+  color: #ff4d00;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #d93c00;
+}
+
+.footer-column h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #111;
+}
+
+.footer-column p {
+  font-size: 0.95rem;
+  color: #333;
+}
+
+.footer-column a {
+  color: #ff4d00;
+  text-decoration: none;
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  border-top: 1px solid #ddd;
+  margin-top: 30px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column-reverse; /* content first, image below */
+    align-items: center; /* keep everything centered */
+    gap: 20px;
+  }
+
+  .footer-image img {
+    max-width: 80%; /* smaller image on mobile */
+  }
+
+  .footer-content {
+    text-align: center;
+    align-items: center;
+  }
+}
+
