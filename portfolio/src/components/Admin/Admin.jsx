@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Admin.css';
 import { useReviews } from '../context/ReviewsContext';
 
-const API_URL = 'http://localhost:5000/api/achievers';
+const API_URL = 'process.env.REACT_APP_API_URL';
 
 const AdminDashboard = () => {
   const { reviews, deleteReview, addAchievement } = useReviews();
@@ -146,7 +146,7 @@ const AdminDashboard = () => {
       
         // Optional: Refresh the list from server (aap chahe to ye hata bhi sakte ho)
         try {
-          const response = await axios.get('http://localhost:5000/api/reviews/admin', { 
+          const response = await axios.get('process.env.REACT_APP_API_URL/api/reviews/admin', { 
             withCredentials: true 
           });
           setFilteredReviews(response.data);
@@ -167,7 +167,7 @@ const AdminDashboard = () => {
       
       // Refresh reviews from server to sync state
       try {
-        const response = await axios.get('http://localhost:5000/api/reviews/admin', { 
+        const response = await axios.get('process.env.REACT_APP_API_URL/api/reviews/admin', { 
           withCredentials: true 
         });
         setFilteredReviews(response.data);
