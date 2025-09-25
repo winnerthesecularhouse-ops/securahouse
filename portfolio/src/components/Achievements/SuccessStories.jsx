@@ -3,7 +3,7 @@ import "./SuccessStories.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/achievers";
+const API_URL = "https://portfolio-x0gj.onrender.com/api/achievers";
 
 const SuccessStories = () => {
   const [achievers, setAchievers] = useState([]);
