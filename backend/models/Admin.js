@@ -1,4 +1,3 @@
-// models/Admin.js
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 
@@ -13,36 +12,36 @@ const adminSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true,
+      unique: true, // ✅ This creates the unique index — no need for schema.index()
       lowercase: true,
       trim: true,
       maxlength: 120,
-      index: true,
     },
     password: {
       type: String,
       required: true,
       minlength: 6,
-      select: false,
+      select: false, // ✅ Prevents password from being sent in queries
     },
     role: {
       type: String,
       default: "admin",
       enum: ["admin"],
     },
-    // optional meta
-    lastLoginAt: Date,
+    lastLoginAt: {
+      type: Date,
+    },
     isActive: {
       type: Boolean,
       default: true,
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // ✅ Adds createdAt and updatedAt
   }
 );
 
-// Hash password before save if modified
+// 🔐 Hash password before save if modified
 adminSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
@@ -50,13 +49,10 @@ adminSchema.pre("save", async function (next) {
   next();
 });
 
-// Instance method to compare password
+// 🔑 Instance method to compare password
 adminSchema.methods.matchPassword = async function (plainPassword) {
   return bcrypt.compare(plainPassword, this.password);
 };
-
-// Indexes
-adminSchema.index({ email: 1 });
 
 const Admin = mongoose.model("Admin", adminSchema);
 export default Admin;
