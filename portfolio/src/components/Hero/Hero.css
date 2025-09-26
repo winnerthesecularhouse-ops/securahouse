@@ -179,6 +179,7 @@
     .hero-container {
       flex-direction: column;
       text-align: center;
+      height: auto;
     }
     .hero-section{
         margin-top: 50px;

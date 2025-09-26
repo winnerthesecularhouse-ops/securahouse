@@ -35,7 +35,7 @@
   /* Testimonial Card */
   .testimonial-card {
     flex: 0 0 calc(100% / 3 - 20px); /* default: 3 cards ek row me */
-    margin: 0 10px; /* cards ke beech gap */
+    margin:10px; /* cards ke beech gap */
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
