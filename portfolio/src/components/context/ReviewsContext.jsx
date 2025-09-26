@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'process.env.REACT_APP_API_URL/api/reviews';
+
 
 const ReviewsContext = createContext(null);
 
@@ -16,7 +16,7 @@ export const ReviewsProvider = ({ children }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get(API_URL, {
+      const response = await axios.get("https://portfolio-x0gj.onrender.com/api/reviews", {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -64,7 +64,7 @@ export const ReviewsProvider = ({ children }) => {
       }
 
       console.log('Submitting review with form data');
-      const response = await axios.post(API_URL, formData, {
+      const response = await axios.post("https://portfolio-x0gj.onrender.com/api/reviews", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -87,7 +87,7 @@ export const ReviewsProvider = ({ children }) => {
     
     try {
       console.log('Sending delete request for review ID:', id);
-      const response = await axios.delete(`${API_URL}/${id}`, {
+      const response = await axios.delete(`${"https://portfolio-x0gj.onrender.com/api/reviews"}/${id}`, {
         headers: {
           'Content-Type': 'application/json',
         },

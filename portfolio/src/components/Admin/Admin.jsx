@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Admin.css';
 import { useReviews } from '../context/ReviewsContext';
 
-const API_URL = 'process.env.REACT_APP_API_URL';
+
 
 const AdminDashboard = () => {
   const { reviews, deleteReview, addAchievement } = useReviews();
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const loadAchievers = async () => {
       try {
-        const res = await axios.get(API_URL);
+        const res = await axios.get("https://portfolio-x0gj.onrender.com/api/achievers");
         setAchievers(res.data || []);
       } catch (e) {
         console.error('Failed to load achievers for admin', e);
@@ -76,7 +76,7 @@ const AdminDashboard = () => {
   const handleDeleteAchiever = async (id) => {
     if (!window.confirm('Delete this achiever image?')) return;
     try {
-      await axios.delete(`${API_URL}/${id}`);
+      await axios.delete(`${"https://portfolio-x0gj.onrender.com/api/achievers"}/${id}`);
       setAchievers((prev) => prev.filter((a) => a._id !== id));
       showNotification('Achievement deleted');
     } catch (e) {
@@ -90,7 +90,7 @@ const AdminDashboard = () => {
     const fd = new FormData();
     fd.append('image', file);
     try {
-      const res = await axios.patch(`${API_URL}/${id}`, fd, {
+      const res = await axios.patch(`${"https://portfolio-x0gj.onrender.com/api/achievers"}/${id}`, fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setAchievers((prev) => prev.map((a) => (a._id === id ? res.data : a)));
@@ -146,7 +146,7 @@ const AdminDashboard = () => {
       
         // Optional: Refresh the list from server (aap chahe to ye hata bhi sakte ho)
         try {
-          const response = await axios.get('process.env.REACT_APP_API_URL/api/reviews/admin', { 
+          const response = await axios.get('https://portfolio-x0gj.onrender.com/api/reviews/admin', { 
             withCredentials: true 
           });
           setFilteredReviews(response.data);
@@ -167,7 +167,7 @@ const AdminDashboard = () => {
       
       // Refresh reviews from server to sync state
       try {
-        const response = await axios.get('process.env.REACT_APP_API_URL/api/reviews/admin', { 
+        const response = await axios.get('https://portfolio-x0gj.onrender.com/api/reviews/admin', { 
           withCredentials: true 
         });
         setFilteredReviews(response.data);
@@ -216,7 +216,7 @@ const AdminDashboard = () => {
       const formData = new FormData();
       formData.append('image', achievementForm.image);
 
-      await axios.post(API_URL, formData, {
+      await axios.post('https://portfolio-x0gj.onrender.com/api/achievers', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: false
       });
@@ -226,7 +226,7 @@ const AdminDashboard = () => {
 
       // Refresh achievers list
       try {
-        const res = await axios.get(API_URL);
+        const res = await axios.get('https://portfolio-x0gj.onrender.com/api/achievers');
         setAchievers(res.data || []);
       } catch {}
 
