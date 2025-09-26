@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import './Testimonials.css';
-import { useReviews } from '../context/ReviewsContext';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import "./Testimonials.css";
+import { useReviews } from "../context/ReviewsContext";
+import { Link } from "react-router-dom";
 
 const Testimonials = () => {
   const { reviews } = useReviews();
@@ -9,9 +9,9 @@ const Testimonials = () => {
 
   // ✅ function to decide visible cards based on screen width
   const getVisibleCards = () => {
-    if (window.innerWidth <= 600) return 1;   // mobile
-    if (window.innerWidth <= 992) return 2;   // tablet
-    return 3;                                 // desktop
+    if (window.innerWidth <= 600) return 1; // mobile
+    if (window.innerWidth <= 992) return 2; // tablet
+    return 3; // desktop
   };
 
   const [visibleCards, setVisibleCards] = useState(getVisibleCards());
@@ -19,8 +19,8 @@ const Testimonials = () => {
   // ✅ update cards count on window resize
   useEffect(() => {
     const handleResize = () => setVisibleCards(getVisibleCards());
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // ✅ Auto slide every 3 sec
@@ -37,7 +37,7 @@ const Testimonials = () => {
     return Array(5)
       .fill(0)
       .map((_, i) => (
-        <span key={i} className={i < rating ? 'star filled' : 'star'}>
+        <span key={i} className={i < rating ? "star filled" : "star"}>
           ★
         </span>
       ));
@@ -63,13 +63,19 @@ const Testimonials = () => {
                 </div>
                 <div className="rating">{renderStars(testimonial.rating)}</div>
                 <div className="testimonial-author">
-                  <img
-                    src={testimonial.avatar}
-                    alt={testimonial.name}
-                    className="avatar"
-                    width="50"
-                    height="50"
-                  />
+                  {testimonial.avatar ? (
+                    <img
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      className="avatar"
+                      width="50"
+                      height="50"
+                    />
+                  ) : (
+                    <div className="avatar-fallback" title={testimonial.name}>
+                      {testimonial.name?.charAt(0).toUpperCase()}
+                    </div>
+                  )}
                   <span className="author-name">{testimonial.name}</span>
                 </div>
               </div>
@@ -80,7 +86,8 @@ const Testimonials = () => {
         <div className="actions">
           <Link
             to="/writereview"
-            className="cta-button" style={{textDecoration:'none'}}
+            className="cta-button"
+            style={{ textDecoration: "none" }}
             aria-label="Write your review"
           >
             Write your review

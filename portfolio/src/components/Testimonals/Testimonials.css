@@ -90,6 +90,20 @@
   .star.filled {
     color: #ffb400;
   }
+  .avatar-fallback {
+    width: 50px;
+    height: 50px;
+    background-color: #4a90e2; /* fallback color */
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  
   
   /* Author Info */
   .testimonial-author {
