@@ -13,7 +13,6 @@ const SuccessStories = () => {
   useEffect(() => {
     const fetchAchievers = async () => {
       try {
-        // Fetch all achievers and show latest first (API already sorts createdAt desc)
         const res = await axios.get(`${API_URL}`);
         setAchievers(res.data || []);
       } catch (e) {
@@ -26,15 +25,18 @@ const SuccessStories = () => {
 
   const totalSlides = Math.max(1, Math.ceil(achievers.length / 4));
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  const nextSlide = () =>
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+
+  const prevSlide = () =>
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
 
   useEffect(() => {
     let interval;
     if (isAutoPlaying && achievers.length > 4) {
       interval = setInterval(() => {
         nextSlide();
-      }, 3000);
+      }, 4000);
     }
     return () => clearInterval(interval);
   }, [isAutoPlaying, totalSlides, achievers.length]);
@@ -46,16 +48,10 @@ const SuccessStories = () => {
     setTimeout(() => setIsAutoPlaying(true), 5000);
   };
 
-  const getCurrentStories = () => {
-    const startIndex = currentSlide * 4;
-    return achievers.slice(startIndex, startIndex + 4);
-  };
-
   return (
     <section className="success-stories" aria-label="Success Stories">
       <div className="container">
         <h2>Pearls of Political Science</h2>
-       
 
         <div className="stories-carousel">
           <button
@@ -66,17 +62,33 @@ const SuccessStories = () => {
             &#8249;
           </button>
 
-          <div className="stories-grid">
-            {getCurrentStories().map((story) => (
-              <div key={story._id} className="story-card">
-                <div className="image-container">
-                  <img src={story.image} alt={story.name} loading="lazy" />
-                </div>
-              </div>
-            ))}
-            {achievers.length === 0 && (
-              <div style={{ padding: "1rem" }}>No achievers yet.</div>
-            )}
+          <div className="stories-viewport">
+            <div
+              className="stories-slider"
+              style={{
+                transform: `translateX(-${currentSlide * 100}%)`,
+              }}
+            >
+              {Array.from({ length: totalSlides }).map((_, index) => {
+                const startIndex = index * 4;
+                const stories = achievers.slice(startIndex, startIndex + 4);
+                return (
+                  <div className="stories-grid" key={index}>
+                    {stories.map((story) => (
+                      <div key={story._id} className="story-card">
+                        <div className="image-container">
+                          <img
+                            src={story.image}
+                            alt={story.name}
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
           </div>
 
           <button
@@ -92,7 +104,9 @@ const SuccessStories = () => {
           {Array.from({ length: totalSlides }).map((_, index) => (
             <button
               key={index}
-              className={`indicator ${currentSlide === index ? "active" : ""}`}
+              className={`indicator ${
+                currentSlide === index ? "active" : ""
+              }`}
               onClick={() => {
                 setIsAutoPlaying(false);
                 setCurrentSlide(index);
@@ -104,7 +118,11 @@ const SuccessStories = () => {
         </div>
 
         <div className="cta-buttons">
-          <Link to="/allachievers" className="cta-button" style={{ textDecoration: "none" }}>
+          <Link
+            to="/allachievers"
+            className="cta-button"
+            style={{ textDecoration: "none" }}
+          >
             🏆 VIEW ALL ACHIEVERS
           </Link>
         </div>

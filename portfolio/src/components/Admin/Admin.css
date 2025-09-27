@@ -427,9 +427,7 @@
   }
 
   @media (max-width: 600px) {
-    .achievers-admin-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    
     .btn-secondary, .btn-delete {
       padding: 6px 10px;
       font-size: 0.85rem;

@@ -3,6 +3,7 @@ import './WriteReview.css';
 import { useReviews } from '../context/ReviewsContext';
 import { useNavigate, Link } from 'react-router-dom';
 
+
 const WriteReview = () => {
   const { addReview, isLoading } = useReviews();
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const WriteReview = () => {
       setAvatarFile(null);
       
       // Show success message
-      alert('Thank you for your review! It will be visible after approval.');
+      alert('Thank you for your review!.');
       navigate('/');
     } catch (err) {
       console.error('Error submitting review:', err);
