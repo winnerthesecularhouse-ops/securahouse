@@ -47,7 +47,7 @@ const Testimonials = () => {
     <section className="testimonials-section" aria-label="Student testimonials">
       <div className="container">
         <h2>Hear from our students</h2>
-        <p className="subheading">You can share your experience with us</p>
+        <p className="subheading">You can also share your experience with us</p>
 
         <div className="testimonials-carousel">
           <div
@@ -57,7 +57,11 @@ const Testimonials = () => {
             }}
           >
             {reviews.map((testimonial) => (
-              <div key={testimonial.id} className="testimonial-card">
+              <div
+                key={testimonial.id}
+                className="testimonial-card"
+                style={{transition:"transform 0.3s ease, box-shadow 0.3s ease"}}
+              >
                 <div className="testimonial-content">
                   <p>"{testimonial.comment}"</p>
                 </div>

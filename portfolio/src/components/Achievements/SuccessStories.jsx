@@ -54,8 +54,8 @@ const SuccessStories = () => {
   return (
     <section className="success-stories" aria-label="Success Stories">
       <div className="container">
-        <h2>Success Stories</h2>
-        <p className="section-subtitle">Pearls of Political Science</p>
+        <h2>Pearls of Political Science</h2>
+       
 
         <div className="stories-carousel">
           <button

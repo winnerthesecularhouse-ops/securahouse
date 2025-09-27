@@ -34,6 +34,8 @@
   
   /* Testimonial Card */
   .testimonial-card {
+     flex: 0 0 100%;
+  max-width: 100%;
     flex: 0 0 calc(100% / 3 - 20px); /* default: 3 cards ek row me */
     margin:10px; /* cards ke beech gap */
     background: #fff;
