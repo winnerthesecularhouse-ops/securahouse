@@ -116,6 +116,15 @@
   right: -53px;
 }
 
+@media (max-width: 1030px) {
+  .nav-button.next {
+    right: -13px;
+  }
+  .nav-button.prev{
+    left: -13px;
+  }
+}
+
 /* Indicators */
 .slide-indicators {
   display: flex;
