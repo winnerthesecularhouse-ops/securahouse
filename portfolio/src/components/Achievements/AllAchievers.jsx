@@ -5,6 +5,20 @@ import axios from "axios";
 
 const API_URL = "https://portfolio-x0gj.onrender.com/api/achievers";
 
+// 🔹 Cloudinary optimized image helper
+const optimizeImage = (url, width = 400, height = 400) => {
+  if (!url || typeof url !== "string") {
+    return "/fallback.jpg"; // default fallback image
+  }
+  if (url.includes("/upload/")) {
+    return url.replace(
+      "/upload/",
+      `/upload/f_auto,q_auto,w_${width},h_${height},c_fill/`
+    );
+  }
+  return url;
+};
+
 const AllAchievers = () => {
   const [achievers, setAchievers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -40,9 +54,13 @@ const AllAchievers = () => {
         ) : (
           <div className="achievers-grid">
             {achievers.map((story) => (
-              <div key={story._id} className="achiever-card">
+              <div key={story._id} className="achiever-card" style={{borderRadius:"10px"}}>
                 <div className="image-wrap">
-                  <img src={story.image} alt={story.name} loading="lazy" />
+                  <img
+                    src={optimizeImage(story.image, 400, 400)}
+                    alt={story.name || "Achiever"}
+                    loading="lazy"
+                  />
                 </div>
               </div>
             ))}
