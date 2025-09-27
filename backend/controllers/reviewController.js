@@ -61,7 +61,7 @@ export const getReviews = async (req, res) => {
 export const getAllReviews = async (req, res) => {
   try {
     const reviews = await Review.find({}).sort({ createdAt: -1 });
-    console.log('Fetched reviews:', reviews);
+
     res.json(reviews);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -90,7 +90,6 @@ export const updateReviewStatus = async (req, res) => {
 export const deleteReview = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('Attempting to delete review with ID:', id);
     
     if (!id) {
       console.error('No review ID provided');
@@ -100,21 +99,19 @@ export const deleteReview = async (req, res) => {
     const review = await Review.findById(id);
     
     if (!review) {
-      console.log('Review not found with ID:', id);
+
       return res.status(404).json({ message: 'Review not found' });
     }
     
     // Delete from database
     await Review.findByIdAndDelete(id);
-    console.log('Review deleted from database:', id);
     
     // If the review has an avatar in Cloudinary, delete it
     if (review.avatar && review.avatar.includes('cloudinary')) {
       try {
         const publicId = review.avatar.split('/').pop().split('.')[0];
-        console.log('Deleting Cloudinary asset:', publicId);
+    
         await cloudinary.uploader.destroy(`review-avatars/${publicId}`);
-        console.log('Cloudinary asset deleted successfully');
       } catch (cloudinaryError) {
         console.error('Error deleting from Cloudinary:', cloudinaryError);
         // Don't fail the request if Cloudinary deletion fails

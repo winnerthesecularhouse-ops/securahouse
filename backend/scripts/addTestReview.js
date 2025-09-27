@@ -12,8 +12,6 @@ const addTestReview = async () => {
       useUnifiedTopology: true,
     });
 
-    console.log('Connected to MongoDB');
-
     // Create a test review
     const testReview = new Review({
       name: 'Test User',
@@ -25,11 +23,10 @@ const addTestReview = async () => {
 
     // Save the review
     const savedReview = await testReview.save();
-    console.log('Test review added successfully:', savedReview);
+    
 
     // Close the connection
     await mongoose.connection.close();
-    console.log('MongoDB connection closed');
   } catch (error) {
     console.error('Error adding test review:', error);
     process.exit(1);

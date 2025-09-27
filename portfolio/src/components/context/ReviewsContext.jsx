@@ -63,7 +63,7 @@ export const ReviewsProvider = ({ children }) => {
         formData.append('avatar', avatar.trim());
       }
 
-      console.log('Submitting review with form data');
+
       const response = await axios.post("https://portfolio-x0gj.onrender.com/api/reviews", formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -86,7 +86,7 @@ export const ReviewsProvider = ({ children }) => {
     }
     
     try {
-      console.log('Sending delete request for review ID:', id);
+
       const response = await axios.delete(`${"https://portfolio-x0gj.onrender.com/api/reviews"}/${id}`, {
         headers: {
           'Content-Type': 'application/json',
@@ -94,7 +94,7 @@ export const ReviewsProvider = ({ children }) => {
         validateStatus: (status) => status < 500, // Don't throw for 4xx errors
       });
       
-      console.log('Delete response:', response.data);
+
       
       if (response.data.success === false) {
         throw new Error(response.data.message || 'Failed to delete review');
