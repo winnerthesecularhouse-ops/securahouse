@@ -37,6 +37,11 @@ app.use('/api/reviews', reviewRoutes);
 app.get("/", (req, res) => {
   res.send("API is running...");
 });
+// In Express.js
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
