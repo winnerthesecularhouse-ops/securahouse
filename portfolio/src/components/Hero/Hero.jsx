@@ -2,110 +2,129 @@ import React, { useState, useEffect } from "react";
 import "./Hero.css";
 
 const slides = [
+ 
   {
-    title: "Explore the world of Political Science",
-    subtitle:
-      "with Sachin Sir, a pioneer educator with 5+ years of experience & a proven track record of producing toppers and guiding students.",
-    button: "🏆 Start Your Journey Today",
-    img: "SachinProf.jpg",
+    title: "With Shri OM Birla , Hon'ble Speaker Of Loksabha",
+    img: "2nd.png",
     alt: "Sachin Bansal"
   },
   {
-    title: "Clear Your Concepts: Master Class 11th NCERT Political Science and Shape Your Future!",
-    subtitle:
-      "with Sachin Sir, a pioneer educator with 7+ years of experience & a proven track record of producing toppers and guiding students.",
-    button: "🏆 Start Your Journey Today",
-    img: "PolitalTheory.png",
-    alt: "Polital Theory Book"
+    title: "With Ms. Mukti Sanyal, Principle Of Bharti College, DU",
+    img: "3rd.png",
+    alt: "Sachin Bansal"
   },
   {
-    title: "Unleash Your Potential, Ace Your Boards: Discover the Winning Formula for Excelling in your Political Science Board Examinations!",
-    subtitle:
-      "with Sachin Sir, a pioneer educator with 7+ years of experience & a proven track record of producing toppers and guiding students.",
-    button: "🏆 Start Your Journey Today",
-    img: "HeroImg3.png",
-    alt: "Student learning political science"
+    title: "With My SOL Updates Team",
+    img: "4th.png",
+    alt: "Sachin Bansal"
   },
   {
-    title: "Start your B.A (H) Political Science Preparation",
-    subtitle:
-      "with Sachin Sir, a pioneer educator with 7+ years of experience & a proven track record of producing toppers and guiding students.",
-    button: "🏆 Start Your Journey Today",
-    img: "Delhi University.png",
-    alt: "Delhi University"
+    title: "With Political Science DEPT. Of HINDU College",
+    img: "5th.png",
+    alt: "Sachin Bansal"
+  },
+  {
+    title: "With Political Science DEPT. Of BHASKARACHARYA College Of Applied Sciences",
+    img: "6th.png",
+    alt: "Sachin Bansal"
+  },
+  {
+    title: "With The Principle Of SHIVAJI College, DU",
+    img: "7th.png",
+    alt: "Sachin Bansal"
+  },
+  {
+    title: "Books In This Series",
+    img: "1st.png",
+    alt: "Sachin Bansal"
+  },
+  {
+    title: "ECHOES Of History : OLD VS NEW",
+    img: "8th.png",
+    alt: "Sachin Bansal"
   }
 ];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [prev, setPrev] = useState(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIsTransitioning(true);
-      setTimeout(() => {
-        setCurrent((prev) => (prev + 1) % slides.length);
-        setIsTransitioning(false);
-      }, 1000);
-    }, 5000);
-    
-    return () => clearInterval(interval);
-  }, []);
+    useEffect(() => {
+      const interval = setInterval(() => {
+        const next = (current + 1) % slides.length;
+        changeSlide(next);
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }, [current]);
+
+  const changeSlide = (nextIndex) => {
+    if (nextIndex === current) return;
+
+    setPrev(current);
+    setCurrent(nextIndex);
+    setIsAnimating(true);
+
+    // Reset after animation
+    setTimeout(() => {
+      setPrev(null);
+      setIsAnimating(false);
+    }, 1000); // Match with animation duration
+  };
 
   const goToSlide = (index) => {
-    if (index === current || isTransitioning) return;
-    
-    setIsTransitioning(true);
-    setTimeout(() => {
-      setCurrent(index);
-      setIsTransitioning(false);
-    }, 1000);
+    if (index === current || isAnimating) return;
+    changeSlide(index);
   };
 
   return (
     <section className="hero-section" aria-label="Hero Banner">
       <div className="hero-slider">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`hero-slide ${index === current ? "active" : ""} ${
-              isTransitioning ? "transitioning" : ""
-            }`}
-            aria-hidden={index !== current}
-          >
-            <div className="hero-container">
-              {/* Left Content */}
-              <div className="hero-left">
-                <h1>{slide.title}</h1>
-                <p>{slide.subtitle}</p>
-                
-              </div>
+        {slides.map((slide, index) => {
+          let className = "hero-slide";
+          if (index === current && isAnimating) {
+            className += " slide-in";
+          } else if (index === prev && isAnimating) {
+            className += " slide-out";
+          } else if (index === current) {
+            className += " active";
+          }
 
-              {/* Right Image */}
-              <div className="hero-right">
-                <img
-                  src={slide.img}
-                  alt={slide.alt}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  className="slide-img"
-                />
+          return (
+            <div
+              key={index}
+              className={className}
+              aria-hidden={index !== current}
+            >
+              <div className="hero-container">
+                <div className="hero-left">
+                  <h1>{slide.title}</h1>
+                </div>
+                <div className="hero-right">
+                  <img
+                    src={slide.img}
+                    alt={slide.alt}
+                    className="slide-img"
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* Dots Indicator - Now positioned below content */}
       <div className="hero-dots-container">
         <div className="hero-dots">
           {slides.map((_, index) => (
             <button
               key={index}
               className={`dot ${current === index ? "active" : ""}`}
-              aria-label={`Go to slide ${index + 1}`}
               onClick={() => goToSlide(index)}
-              disabled={isTransitioning}
-            ></button>
+              disabled={isAnimating}
+              aria-label={`Go to slide ${index + 1}`}
+            />
           ))}
         </div>
       </div>
