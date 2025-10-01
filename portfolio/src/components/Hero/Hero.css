@@ -1,201 +1,290 @@
-.hero-section {
-  overflow: hidden;
-  width: 100%;
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background-color: #eaedf0;
-  font-family: "Segoe UI", sans-serif;
-  padding: 20px 0;
-  position: relative;
-}
-
-/* Slider container */
-.hero-slider {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  flex: 1;
-}
-
-/* Individual slide */
-.hero-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Show current slide */
-.hero-slide.active {
-  opacity: 1;
-  pointer-events: all;
-  z-index: 2;
-}
-
-/* Slide container inside each slide */
-.hero-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 85%;
-  max-width: 1400px;
-  margin: auto;
-  gap: 40px;
-  height: 100%;
-}
-
-/* Left Text */
-.hero-left {
-  flex: 1;
-}
-
-.hero-left h1 {
-  font-family: math;
-  font-size: 3.5rem;  /* Larger title */
-  font-weight: 700;
-  color: #111;
-  margin: 0;
-  line-height: 1.3;
-}
-
-/* Right Image */
-.hero-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-right img,
-.slide-img {
-  max-width: 100%;
-  max-height: 500px;
-  object-fit: contain;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-}
-
-/* Slide animations */
-@keyframes slideOutLeft {
-  from {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0%);
-    opacity: 1;
-  }
-}
-
-/* Classes applied dynamically */
-.hero-slide.slide-in {
-  animation: slideInRight 1s ease forwards;
-  z-index: 2;
-  opacity: 1;
-  pointer-events: all;
-}
-
-.hero-slide.slide-out {
-  animation: slideOutLeft 1s ease forwards;
-  z-index: 1;
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Dots navigation */
-.hero-dots-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  padding: 20px 0;
-  position: relative;
-  z-index: 3;
-}
-
-.hero-dots {
-  display: flex;
-  gap: 8px;
-}
-
-.dot {
-  width: 12px;
-  height: 12px;
-  background: #ccc;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: 0.3s ease;
-  border: none;
-  padding: 0;
-}
-
-.dot.active {
-  background: #f63e2a;
-  transform: scale(1.2);
-}
-
-.dot:disabled {
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-/* Responsive styles */
-@media (max-width: 992px) {
-  .hero-container {
+  .hero-section {
+    overflow: hidden;
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
     flex-direction: column;
-    text-align: center;
-    height: auto;
-  }
- 
-
-  .hero-left h1 {
-    font-size: 2.8rem;
-  }
-
-  .hero-right img {
-    max-height: 350px;
-    margin-top: 20px;
-  }
-
-  .hero-dots-container {
-    padding: 15px 0;
-  }
-}
-
-@media (max-width: 576px) {
-  .hero-left h1 {
-    font-size: 2rem;
-  }
-  .hero-section{
-    min-height: 60vh;
-  }
-  
-
-  .hero-right img {
-    max-height: 260px;
-  }
-
-  .hero-dots-container {
-    padding: 10px 0;
+    justify-content: center;
+    background-color: #eaedf0;
+    font-family: "Segoe UI", sans-serif;
+    padding: 20px 0;
     position: relative;
-    top: 26px;
   }
-}
+
+  /* Slider container */
+  .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+  }
+
+  /* Individual slide */
+  .hero-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  /* Show current slide */
+  .hero-slide.active {
+    opacity: 1;
+    pointer-events: all;
+    z-index: 2;
+  }
+
+  /* Slide container inside each slide */
+  .hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;
+    max-width: 1400px;
+    margin: auto;
+    gap: 40px;
+    height: 100%;
+  }
+
+  /* Left Text */
+  .hero-left {
+    flex: 1;
+  }
+  .hero-left h1 {
+    font-family: math;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #111;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  /* Right Image */
+  .hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .hero-right img,
+  .slide-img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  /* ===================== */
+  /* ✅ Slide Animations */
+  /* ===================== */
+
+  /* Left to Right */
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes slideOutLeft {
+    from {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+  }
+
+  /* Right to Left */
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes slideOutRight {
+    from {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+    to {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+
+  /* Dynamic classes applied via JS */
+  .hero-slide.slide-in-left {
+    animation: slideInLeft 0.5s ease forwards;
+    z-index: 2;
+    opacity: 1;
+    pointer-events: all;
+  }
+  .hero-slide.slide-out-right {
+    animation: slideOutRight 0.5s ease forwards;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .hero-slide.slide-in-right {
+    animation: slideInRight 0.5s ease forwards;
+    z-index: 2;
+    opacity: 1;
+    pointer-events: all;
+  }
+  .hero-slide.slide-out-left {
+    animation: slideOutLeft 0.5s ease forwards;
+    z-index: 1;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* ===================== */
+  /* ✅ Dots Navigation */
+  /* ===================== */
+  .hero-dots-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+    position: relative;
+    z-index: 3;
+  }
+  .hero-dots {
+    display: flex;
+    gap: 8px;
+  }
+  .dot {
+    width: 12px;
+    height: 12px;
+    background: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+    padding: 0;
+  }
+  .dot.active {
+    background: #f63e2a;
+    transform: scale(1.2);
+  }
+  .dot:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  /* ===================== */
+  /* ✅ Responsive */
+  /* ===================== */
+  @media (max-width: 992px) {
+    .hero-container {
+      flex-direction: column;
+      text-align: center;
+      height: auto;
+    }
+    .hero-left h1 {
+      font-size: 2.8rem;
+    }
+    .hero-right img {
+      max-height: 350px;
+      margin-top: 20px;
+    }
+    .hero-dots-container {
+      padding: 15px 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .hero-left h1 {
+      font-size: 2rem;
+    }
+    .hero-section {
+      min-height: 60vh;
+    }
+    .hero-right img {
+      max-height: 260px;
+    }
+    .hero-dots-container {
+      padding: 10px 0;
+      position: relative;
+      top: 26px;
+    }
+  }
+
+  /* Slide In from Right */
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(100%);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Slide Out to Left */
+  @keyframes slideOutLeft {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-100%);
+      opacity: 0.8;
+    }
+  }
+
+  /* Slide In from Left */
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Slide Out to Right */
+  @keyframes slideOutRight {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(100%);
+      opacity: 0.8;
+    }
+  }
+  .hero-slide.slide-in {
+    animation: slideInRight 0.8s ease-in-out forwards;
+  }
+  .hero-slide.slide-out {
+    animation: slideOutLeft 0.8s ease-in-out forwards;
+  }
+  .hero-slide.slide-in-left {
+    animation: slideInLeft 0.8s ease-in-out forwards;
+  }
+  .hero-slide.slide-out-right {
+    animation: slideOutRight 0.8s ease-in-out forwards;
+  }
+

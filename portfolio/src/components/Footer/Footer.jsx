@@ -68,7 +68,7 @@ const Footer = () => {
           <div className="footer-column contact">
             <h3>Contact Me</h3>
             <p>
-              <strong>For Queries</strong>
+              <strong>For Admission/Career Related Guidance</strong>
               <br />
               <a href="mailto:2sachinbansal@gmail.com">2sachinbansal@gmail.com</a>
               <br />
