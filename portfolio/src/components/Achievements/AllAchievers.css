@@ -1,7 +1,7 @@
 /* AllAchievers.css */
 .all-achievers {
   padding: 60px 0;
-  background: #f9fafb;
+  background:linear-gradient(135deg, rgb(248, 249, 250), rgb(233, 236, 239));
 }
 
 .all-achievers .container {

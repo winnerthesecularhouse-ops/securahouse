@@ -1,5 +1,5 @@
 .footer {
-  background: #eaf2f5;
+  background-color: #eaedf0;
   padding: 50px 20px 20px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
@@ -7,12 +7,16 @@
 
 .footer-container {
   max-width: 1400px;
-  margin: 0 auto;
+  margin: -30px auto;
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
   justify-content: center; /* center all items horizontally */
   align-items: center;
+}
+
+.fa-brands, .fab{
+  color: #e53e3e;
 }
 
 /* Image */
@@ -84,7 +88,7 @@
 }
 
 .footer-column a {
-  color: #ff4d00;
+  color: #e53e3e;
   text-decoration: none;
 }
 

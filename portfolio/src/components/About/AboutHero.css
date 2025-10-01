@@ -4,11 +4,12 @@
   margin: auto;
   font-family: "Poppins", sans-serif;
   color: #222;
- 
+  background-color: #eaedf0;
   text-align: center; /* center all text */
 }
 
 .about-hero-container {
+ 
   display: flex;
   flex-direction: column; /* single column since no image */
   align-items: center;

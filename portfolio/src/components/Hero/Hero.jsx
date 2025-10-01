@@ -19,12 +19,12 @@ const slides = [
     alt: "Sachin Bansal"
   },
   {
-    title: "With Political Science DEPT. Of HINDU College",
+    title: "With Political Science DEPT. Of HINDU College, DU",
     img: "5th.png",
     alt: "Sachin Bansal"
   },
   {
-    title: "With Political Science DEPT. Of BHASKARACHARYA College Of Applied Sciences",
+    title: "With Political Science DEPT. Of BHASKARACHARYA College, DU Of Applied Sciences",
     img: "6th.png",
     alt: "Sachin Bansal"
   },

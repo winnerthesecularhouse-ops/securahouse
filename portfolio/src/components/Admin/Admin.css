@@ -1,7 +1,7 @@
 /* AdminDashboard.css */
 .admin-dashboard {
     min-height: 100vh;
-    background-color: #f5f7fa;
+    background:linear-gradient(135deg, rgb(248, 249, 250), rgb(233, 236, 239));
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   

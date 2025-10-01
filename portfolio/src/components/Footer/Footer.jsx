@@ -23,7 +23,7 @@ const Footer = () => {
             <h2 className="footer-title">Sachin Bansal</h2>
             <p className="tagline">
               Empowering Minds, Shaping Futures <br />
-              Explore the World of Political Science with Sachin Sir
+              Explore the World of Social Sciences with Sachin Sir
             </p>
 
             <div className="social-links" aria-label="Social media links">
@@ -32,6 +32,7 @@ const Footer = () => {
                 aria-label="Visit our Facebook"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{fontSize: "23px",marginTop:"6px"}}
               >
                 <i className="fab fa-facebook-f"></i>
               </a>
@@ -40,6 +41,7 @@ const Footer = () => {
                 aria-label="Visit our Instagram"
                 target="_blank"
                 rel="noopener noreferrer"
+                style={{fontSize: "27px",marginTop:"4px"}}
               >
                 <i className="fab fa-instagram"></i>
               </a>
@@ -64,7 +66,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="footer-column contact">
-            <h3>Contact Us</h3>
+            <h3>Contact Me</h3>
             <p>
               <strong>For Queries</strong>
               <br />
