@@ -15,7 +15,8 @@ app.use(
   cors({
     origin: [
       "https://thesachinbansal.in",
-      "https://www.thesachinbansal.in"
+      "https://www.thesachinbansal.in",
+      "http://localhost:5173",
     ],
     credentials: true,
   })
