@@ -11,16 +11,16 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(express.json());
 app.use(
   cors({
     origin: [
-      "https://thesachinbansal.in/",
-      "https://www.thesachinbansal.in/"
+      "https://thesachinbansal.in",
+      "https://www.thesachinbansal.in"
     ],
     credentials: true,
   })
 );
+
 
 // Connect DB
 connectDB();
