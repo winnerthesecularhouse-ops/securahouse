@@ -15,10 +15,8 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "http://127.0.0.1:5173",
-      "http://127.0.0.1:5174",
-      "https://portfolio-three-jet-53.vercel.app"
+      "https://thesachinbansal.in/",
+      "https://www.thesachinbansal.in/"
     ],
     credentials: true,
   })
