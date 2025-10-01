@@ -254,7 +254,7 @@ const WriteReview = () => {
             className="submit-button"
             disabled={isSubmitting || isLoading}
             style={{
-              backgroundColor: '#3498db',
+              backgroundColor: 'rgb(34 54 84)',
               color: 'white',
               border: 'none',
               padding: '12px 24px',
