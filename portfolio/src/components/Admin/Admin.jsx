@@ -6,16 +6,10 @@ import { useReviews } from '../context/ReviewsContext';
 
 
 const AdminDashboard = () => {
-  const { reviews, deleteReview, addAchievement } = useReviews();
+  const { addAchievement } = useReviews();
   const [achievers, setAchievers] = useState([]);
-  // view can be 'reviews' | 'upload' | 'manage'
-  const [view, setView] = useState('reviews');
-  const [filteredReviews, setFilteredReviews] = useState(reviews);
-  const [filters, setFilters] = useState({
-    rating: 'all',
-    search: '',
-    sort: 'newest'
-  });
+  // view can be 'upload' | 'manage'
+  const [view, setView] = useState('manage');
   const [achievementForm, setAchievementForm] = useState({
     image: null,
     preview: ''
@@ -23,46 +17,17 @@ const AdminDashboard = () => {
   const [showAchievementForm, setShowAchievementForm] = useState(false);
   const [notification, setNotification] = useState('');
 
-  // Apply filters whenever reviews or filters change
+  // Load achievements on component mount
   useEffect(() => {
-    let result = [...reviews];
-
-    if (filters.rating !== 'all') {
-      result = result.filter(review => review.rating === parseInt(filters.rating));
-    }
-
-    if (filters.search) {
-      const searchTerm = filters.search.toLowerCase();
-      result = result.filter(review =>
-        review.name.toLowerCase().includes(searchTerm) ||
-        review.text.toLowerCase().includes(searchTerm)
-      );
-    }
-
-    if (filters.sort === 'newest') {
-      result.sort((a, b) => b.id - a.id);
-    } else if (filters.sort === 'oldest') {
-      result.sort((a, b) => a.id - b.id);
-    } else if (filters.sort === 'highest') {
-      result.sort((a, b) => b.rating - a.rating);
-    } else if (filters.sort === 'lowest') {
-      result.sort((a, b) => a.rating - b.rating);
-    }
-
-    setFilteredReviews(result);
-  }, [reviews, filters]);
-
-  // Load achievers list for admin management
-  useEffect(() => {
-    const loadAchievers = async () => {
+    const fetchAchievers = async () => {
       try {
-        const res = await axios.get("https://portfolio-x0gj.onrender.com/api/achievers");
+        const res = await axios.get('http://localhost:5000/api/achievers');
         setAchievers(res.data || []);
-      } catch (e) {
-        console.error('Failed to load achievers for admin', e);
+      } catch (err) {
+        console.error('Failed to load achievements', err);
       }
     };
-    loadAchievers();
+    fetchAchievers();
   }, []);
 
   const handleFilterChange = (e) => {
@@ -76,7 +41,7 @@ const AdminDashboard = () => {
   const handleDeleteAchiever = async (id) => {
     if (!window.confirm('Delete this achiever image?')) return;
     try {
-      await axios.delete(`${"https://portfolio-x0gj.onrender.com/api/achievers"}/${id}`);
+      await axios.delete(`${"http://localhost:5000/api/achievers"}/${id}`);
       setAchievers((prev) => prev.filter((a) => a._id !== id));
       showNotification('Achievement deleted');
     } catch (e) {
@@ -90,7 +55,7 @@ const AdminDashboard = () => {
     const fd = new FormData();
     fd.append('image', file);
     try {
-      const res = await axios.patch(`${"https://portfolio-x0gj.onrender.com/api/achievers"}/${id}`, fd, {
+      const res = await axios.patch(`${"http://localhost:5000/api/achievers"}/${id}`, fd, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setAchievers((prev) => prev.map((a) => (a._id === id ? res.data : a)));
@@ -101,86 +66,26 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleDeleteReview = async (id, event) => {
-    // Prevent any default behavior and stop event propagation
-    if (event) {
-      event.preventDefault();
-      event.stopPropagation();
-      event.nativeEvent?.stopImmediatePropagation?.();
-    }
-    
+  const handleDeleteAchievement = async (id) => {
     if (!id) {
-      console.error('No review ID provided for deletion');
-      setNotification({
-        type: 'error',
-        message: 'Error: No review ID provided',
-      });
+      console.error('No achievement ID provided for deletion');
+      setNotification('Error: No achievement ID provided');
       return false;
     }
 
-    if (!window.confirm('Are you sure you want to delete this review? This action cannot be undone.')) {
+    if (!window.confirm('Are you sure you want to delete this achievement? This action cannot be undone.')) {
       return false;
     }
 
     try {
-      setNotification({
-        type: 'info',
-        message: 'Deleting review...',
-        loading: true
-      });
-
-      // Make the delete request
-      const result = await deleteReview(id);
-      
-      if (result && result.success) {
-        // Update local state
-        setFilteredReviews(prevReviews => 
-          prevReviews.filter(review => review._id !== id && review.id !== id)
-        );
-      
-        setNotification({
-          type: 'success',
-          message: 'Review deleted successfully',
-          loading: false
-        });
-      
-        // Optional: Refresh the list from server (aap chahe to ye hata bhi sakte ho)
-        try {
-          const response = await axios.get('https://portfolio-x0gj.onrender.com/api/reviews/admin', { 
-            withCredentials: true 
-          });
-          setFilteredReviews(response.data);
-        } catch (refreshError) {
-          console.error('Error refreshing reviews:', refreshError);
-        }
-      
-        // 🔴 Add this line for hard refresh
-        window.location.reload();
-      
-        return true;
-      }
-       else {
-        throw new Error(result?.message || 'Failed to delete review');
-      }
+      await axios.delete(`http://localhost:5000/api/achievers/${id}`);
+      // Update local state
+      setAchievers(prev => prev.filter(achiever => achiever._id !== id));
+      setNotification('Achievement deleted successfully');
+      return true;
     } catch (error) {
-      console.error('Failed to delete review:', error);
-      
-      // Refresh reviews from server to sync state
-      try {
-        const response = await axios.get('https://portfolio-x0gj.onrender.com/api/reviews/admin', { 
-          withCredentials: true 
-        });
-        setFilteredReviews(response.data);
-      } catch (refreshError) {
-        console.error('Error refreshing reviews:', refreshError);
-      }
-      
-      setNotification({
-        type: 'error',
-        message: error.message || 'Failed to delete review. Please try again.',
-        loading: false
-      });
-      
+      console.error('Failed to delete achievement:', error);
+      setNotification('Failed to delete achievement. Please try again.');
       return false;
     }
   };
@@ -216,7 +121,7 @@ const AdminDashboard = () => {
       const formData = new FormData();
       formData.append('image', achievementForm.image);
 
-      await axios.post('https://portfolio-x0gj.onrender.com/api/achievers', formData, {
+      await axios.post('http://localhost:5000/api/achievers', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
         withCredentials: false
       });
@@ -226,7 +131,7 @@ const AdminDashboard = () => {
 
       // Refresh achievers list
       try {
-        const res = await axios.get('https://portfolio-x0gj.onrender.com/api/achievers');
+        const res = await axios.get('http://localhost:5000/api/achievers');
         setAchievers(res.data || []);
       } catch {}
 
@@ -244,11 +149,6 @@ const AdminDashboard = () => {
     setTimeout(() => setNotification(''), 3000);
   };
 
-  const renderStars = (rating) => {
-    return Array(5).fill(0).map((_, i) => (
-      <span key={i} className={i < rating ? "star filled" : "star"}>★</span>
-    ));
-  };
 
   return (
     <div className="admin-dashboard">
@@ -260,26 +160,18 @@ const AdminDashboard = () => {
 
       <header className="admin-header">
         <h1>Admin Dashboard</h1>
-        <p>Manage reviews and achievements</p>
+        <p>Manage Our Gallery</p>
       </header>
 
       <div className="admin-content">
         <div className="admin-sidebar">
           <h3>Quick Actions</h3>
           <button
-            className={`sidebar-btn ${view === 'reviews' ? 'active' : ''}`}
-            onClick={() => {
-              setView('reviews');
-            }}
-            style={{ marginBottom: '8px' }}
-          >
-            View Reviews
-          </button>
-          <button
             className={`sidebar-btn ${view === 'upload' ? 'active' : ''}`}
             onClick={() => {
               setShowAchievementForm(true);
               setView('upload');
+              
             }}
             style={{ marginBottom: '8px' }}
           >
@@ -295,19 +187,7 @@ const AdminDashboard = () => {
             Manage Achievements
           </button>
 
-          <div className="stats">
-            <h3>Statistics</h3>
-            <div className="stat-item">
-              <span className="stat-value">{reviews.length}</span>
-              <span className="stat-label">Total Reviews</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-value">
-                {reviews.filter(r => r.rating === 5).length}
-              </span>
-              <span className="stat-label">5-Star Reviews</span>
-            </div>
-          </div>
+          
         </div>
 
         <div className="admin-main">
@@ -343,55 +223,7 @@ const AdminDashboard = () => {
             </div>
           ) : view === 'reviews' ? (
             <>
-              <div className="filters-section">
-                <h2>Manage Reviews</h2>
-
-                <div className="filters">
-                  <div className="filter-group">
-                    <label htmlFor="rating">Filter by Rating</label>
-                    <select
-                      id="rating"
-                      name="rating"
-                      value={filters.rating}
-                      onChange={handleFilterChange}
-                    >
-                      <option value="all">All Ratings</option>
-                      <option value="5">5 Stars</option>
-                      <option value="4">4 Stars</option>
-                      <option value="3">3 Stars</option>
-                      <option value="2">2 Stars</option>
-                      <option value="1">1 Star</option>
-                    </select>
-                  </div>
-
-                  <div className="filter-group">
-                    <label htmlFor="sort">Sort By</label>
-                    <select
-                      id="sort"
-                      name="sort"
-                      value={filters.sort}
-                      onChange={handleFilterChange}
-                    >
-                      <option value="newest">Newest First</option>
-                      <option value="oldest">Oldest First</option>
-                      <option value="highest">Highest Rated</option>
-                      <option value="lowest">Lowest Rated</option>
-                    </select>
-                  </div>
-
-                  <div className="filter-group">
-                    <label htmlFor="search">Search</label>
-                    <input
-                      type="text"
-                      id="search"
-                      name="search"
-                      value={filters.search}
-                      onChange={handleFilterChange}
-                      placeholder="Search by name or content"
-                    />
-                  </div>
-                </div>
-              </div>
+              
 
               <div className="reviews-list">
                 <div className="results-count">

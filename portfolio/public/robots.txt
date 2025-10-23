@@ -1,6 +1,0 @@
-# robots.txt
-
-User-agent: *
-Disallow:
-
-Sitemap: https://portfolio-three-jet-53.vercel.app/sitemap.xml

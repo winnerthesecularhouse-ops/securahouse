@@ -1,0 +1,36 @@
+.topbar {
+    background-color: #f26522; /* orange bar */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    font-size: 15px;
+    flex-wrap: wrap;
+  }
+  
+  /* Left Section (Email + Phone + Address) */
+  .topbar-left span {
+    margin-right: 20px;
+  }
+  
+  /* Right Section (Social Icons) */
+  .topbar-right a {
+    color: white;
+    margin-left: 20px;
+    font-size: 20px;
+    transition: 0.3s ease;
+  }
+  
+  .topbar-right a:hover {
+    color: #000; /* black on hover */
+    transform: scale(1.1);
+  }
+  
+  /* 📱 Responsive for small screens — hide topbar on mobile */
+  @media (max-width: 768px) {
+    .topbar {
+      display: none;
+    }
+  }
+  

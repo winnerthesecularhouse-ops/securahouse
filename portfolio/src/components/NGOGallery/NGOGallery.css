@@ -1,0 +1,238 @@
+.ngo-gallery {
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, #f5f7f8 0%, #e4e8eb 100%);
+    text-align: center;
+  }
+  
+  .gallery-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #2c4f4a;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #2c4f4a 0%, #4a9a91 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .gallery-subtitle {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    font-weight: 400;
+  }
+  
+  /* Layout */
+  .gallery-layout {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .left-images,
+  .right-images {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px;
+  }
+  
+  /* Image Styles */
+  .left-images .big-image,
+  .right-images .small-image {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+  }
+  
+  .left-images .big-image:hover,
+  .right-images .small-image:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  
+  .left-images .big-image img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  
+  .right-images .small-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  
+  .left-images .big-image:hover img,
+  .right-images .small-image:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* Overlay Text */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    background: linear-gradient(
+      135deg,
+      rgba(44, 79, 74, 0.85) 0%,
+      rgba(74, 154, 145, 0.75) 100%
+    );
+    color: #fff;
+    text-align: center;
+    transition: all 0.4s ease;
+    opacity: 0;
+  }
+  
+  .left-images .big-image:hover .overlay,
+  .right-images .small-image:hover .overlay {
+    opacity: 1;
+  }
+  
+  .quote-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.5;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transform: translateY(20px);
+    transition: transform 0.4s ease;
+  }
+  
+  .left-images .big-image:hover .quote-text,
+  .right-images .small-image:hover .quote-text {
+    transform: translateY(0);
+  }
+  
+  /* CTA Button */
+  .cta-container {
+    margin-top: 60px;
+  }
+  
+  .join-button {
+    background: var(--accent);
+    color: white;
+    padding: 18px 50px;
+    border: none;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 25px rgba(74, 154, 145, 0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .join-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(74, 154, 145, 0.4);
+    background: linear-gradient(135deg, #2c4f4a 0%, #4a9a91 100%);
+  }
+  
+  .join-button:active {
+    transform: translateY(-2px);
+  }
+  
+  .join-button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
+  }
+  
+  .join-button:hover::after {
+    left: 100%;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .gallery-layout {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .left-images,
+    .right-images {
+      width: 100%;
+      max-width: 600px;
+    }
+    
+    .left-images .big-image img {
+      height: 250px;
+    }
+    
+    .right-images .small-image img {
+      height: 200px;
+    }
+    
+    .gallery-title {
+      font-size: 2.3rem;
+    }
+    
+    .gallery-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .ngo-gallery {
+      padding: 60px 15px 40px;
+    }
+    
+    .gallery-title {
+      font-size: 2rem;
+    }
+    
+    .gallery-subtitle {
+      font-size: 1rem;
+      margin-bottom: 40px;
+    }
+    
+    .quote-text {
+      font-size: 1.1rem;
+    }
+    
+    .join-button {
+      padding: 16px 40px;
+      font-size: 1.1rem;
+      width: 90%;
+      max-width: 300px;
+    }
+    
+    .cta-container {
+      margin-top: 40px;
+    }
+  }

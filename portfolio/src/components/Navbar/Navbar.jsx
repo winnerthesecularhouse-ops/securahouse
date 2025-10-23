@@ -7,124 +7,93 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(isScrolled);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Check auth on route change and on storage change
-  useEffect(() => {
-    const checkAuth = () => {
-      const token = localStorage.getItem("adminToken");
-      setIsLoggedIn(!!token);
-    };
-    checkAuth();
-    const onStorage = (e) => {
-      if (e.key === "adminToken") checkAuth();
-    };
-    window.addEventListener("storage", onStorage);
-    return () => window.removeEventListener("storage", onStorage);
-  }, [location]);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const scrollToSection = (id) => {
-    const doScroll = () => {
+    const scroll = () => {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Calculate the position to scroll to (accounting for fixed header)
+        const yOffset = -80; // Adjust this value based on your header height
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     };
+    
     if (location.pathname !== "/") {
-      navigate("/");
-      // wait a tick for home to render
-      setTimeout(doScroll, 150);
+      navigate("/", { state: { scrollTo: id } });
+      // Add a small delay to allow the page to load before scrolling
+      const scrollAfterLoad = () => {
+        if (document.readyState === 'complete') {
+          scroll();
+          window.removeEventListener('load', scrollAfterLoad);
+        }
+      };
+      window.addEventListener('load', scrollAfterLoad);
     } else {
-      doScroll();
+      scroll();
     }
     setIsMenuOpen(false);
   };
-
-  const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminInfo");
-    setIsLoggedIn(false);
-    navigate("/");
-    setIsMenuOpen(false);
-  };
-
-  // Double click on brand navigates to login
-  const handleBrandDoubleClick = (e) => {
-    e.preventDefault();
-    navigate("/login");
-  };
+  
+  // Handle scroll after navigation
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      const id = location.state.scrollTo;
+      const el = document.getElementById(id);
+      if (el) {
+        const yOffset = -80;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+      // Clear the state to prevent scrolling again on re-renders
+      window.history.replaceState({}, document.title);
+    }
+  }, [location]);
 
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
-        <Link
-          to="/"
-          className="navbar-brand"
-          onDoubleClick={handleBrandDoubleClick}
-        >
-          {/* Brand Logo */}
+        {/* Brand Section */}
+        <Link to="/" className="navbar-brand" onDoubleClick={() => navigate('/login')}>
           <div className="brand-logo">
-            <img src="/aboutpic.png" alt="Logo" />
+            <img src="/NGOLogo.png" alt="NGO Logo" />
           </div>
-
-          {/* Brand Text */}
           <div className="brand-text">
-            <span className="brand-name">Sachin Bansal</span>
+            <span className="brand-name">Secular House Foundation</span>
+            <span className="brand-tagline">Together for a Better Tomorrow</span>
           </div>
         </Link>
 
-        {/* Brand: single-click -> home, double-click -> login */}
-      
-
+        {/* Menu Section */}
         <div className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
           <div className="navbar-start">
-            <button
-              className="navbar-item"
-              onClick={() => scrollToSection("about")}
-            >
-              <i className="fas fa-info-circle"></i>
-              <span>ABOUT</span>
+            <button className="navbar-item" onClick={() => scrollToSection("about")}>
+              About
             </button>
-            <button
-              className="navbar-item"
-              onClick={() => scrollToSection("contact")}
-            >
-              <i className="fas fa-envelope"></i>
-              <span>CONTACT ME</span>
+            <button className="navbar-item" onClick={() => scrollToSection("achievements")}>
+              Gallery
+            </button>
+            
+            <button className="navbar-item" onClick={() => scrollToSection("contact")}>
+              Contact Us
             </button>
 
-            <div className="login-button">
-              {isLoggedIn ? (
-                location.pathname === "/admin" ? (
-                  <button onClick={handleLogout}>Logout</button>
-                ) : (
-                  <Link to="/admin" onClick={() => setIsMenuOpen(false)}>
-                    <button>Admin</button>
-                  </Link>
-                )
-              ) : location.pathname === "/" ? null : (
-                <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                
-                </Link>
-              )}
-            </div>
+            <button className="join-btn" onClick={() => navigate("/donateus")}>
+              Donate Us
+            </button>
           </div>
         </div>
 
+        {/* Mobile Menu Toggle */}
         <button
           className={`navbar-toggle ${isMenuOpen ? "active" : ""}`}
           onClick={toggleMenu}

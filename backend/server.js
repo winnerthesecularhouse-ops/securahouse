@@ -4,7 +4,6 @@ import connectDB from "./config/db.js";
 import cors from "cors";
 import adminRoutes from "./routes/adminRoutes.js";
 import achieverRoutes from "./routes/achieverRoutes.js";
-import reviewRoutes from './routes/reviewRoutes.js';
 
 dotenv.config();
 
@@ -16,11 +15,9 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "https://thesachinbansal.in",
-      "https://www.thesachinbansal.in",
       "http://localhost:5173",
     ],
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
@@ -32,7 +29,6 @@ connectDB();
 // Routes
 app.use("/api/admin", adminRoutes);
 app.use("/api/achievers", achieverRoutes);
-app.use('/api/reviews', reviewRoutes);
 
 
 // Test route

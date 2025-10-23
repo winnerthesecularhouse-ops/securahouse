@@ -5,81 +5,79 @@ const Footer = () => {
   return (
     <footer id="contact" className="footer" role="contentinfo">
       <div className="footer-container">
-        {/* Left Image (Clickable) */}
-        <div className="footer-image">
-          <a
-            href="https://www.linkedin.com/in/thesachinbansal/" // Replace with your desired redirect
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src="/aboutpic.png" alt="Footer visual" />
-          </a>
+        {/* Left Column - Logo / NGO Name */}
+        <div className="footer-column footer-brand">
+          <h2 className="footer-title">Secular House Foundation</h2>
+          <p className="tagline">
+            Empowering Communities, Spreading Hope <br />
+            Join Us in Making a Difference
+          </p>
+          <div className="social-links" aria-label="Social media links">
+            <a
+              href="https://www.facebook.com/share/1DDS7tSbws/"
+              aria-label="Facebook"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/thesecularhouse?igsh=MWtkM2VneGpleDZ6OA=="
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-instagram"></i>
+            </a>
+            <a
+              href="https://youtube.com/@thesecularhouse?si=UsUkHQVm6fFEEtGz"
+              aria-label="YouTube"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-youtube"></i>
+            </a>
+            <a
+              href="https://twitter.com/thesecularhouse"
+              aria-label="Twitter"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i className="fab fa-twitter"></i>
+            </a>
+          </div>
         </div>
 
-        {/* Right Content */}
-        <div className="footer-content">
-          {/* Brand / About */}
-          <div className="footer-column brand">
-            <h2 className="footer-title">Sachin Bansal</h2>
-            <p className="tagline">
-              Empowering Minds, Shaping Futures <br />
-              Explore the World of Social Sciences with Sachin Sir
-            </p>
-
-            <div className="social-links" aria-label="Social media links">
-              <a
-                href="https://www.facebook.com/thesachinbansal/"
-                aria-label="Visit our Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{fontSize: "23px",marginTop:"6px"}}
-              >
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a
-                href="https://www.instagram.com/thesachinbansal/"
-                aria-label="Visit our Instagram"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{fontSize: "27px",marginTop:"4px"}}
-              >
-                <i className="fab fa-instagram"></i>
-              </a>
-              <a
-                href="https://www.youtube.com/solupdates/"
-                aria-label="Visit our YouTube"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-youtube"></i>
-              </a>
-              <a
-                href="https://www.youtube.com/thesecularhouse/"
-                aria-label="Visit our YouTube Channel"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fab fa-youtube"></i>
-              </a>
-            </div>
-          </div>
-
-          {/* Contact Info */}
-          <div className="footer-column contact">
-            <h3>Contact Me</h3>
-            <p>
-              <strong>For Admission/Career Related Guidance</strong>
-              <br />
-              <a href="mailto:2sachinbansal@gmail.com">2sachinbansal@gmail.com</a>
-              <br />
-              <a href="tel:+919821925020">+91 9821925020</a>
-            </p>
-          </div>
+        {/* Right Column - Contact Info */}
+        <div className="footer-column footer-contact">
+          <h3>Contact Us</h3>
+          <p>
+            <strong>Email:</strong>{" "}
+            <a href="mailto:thesecularhouse@gmail.com">
+              thesecularhouse@gmail.com
+            </a>
+            <br />
+            <strong>Phone:</strong>{" "}
+            <a href="tel:+919870447973">+91 9870447973</a>
+            <br />
+            <strong>Address:</strong>{" "}
+            <a
+              href="https://maps.app.goo.gl/mXcCkgaeHD4vUdEDA"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              RZ 44, Geetanjali Park, West Sagarpur, Sagar Pur, New Delhi, India
+            </a>
+          </p>
         </div>
       </div>
 
+      {/* Bottom */}
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} Sachin Bansal. All Rights Reserved.</p>
+        <p>
+          © {new Date().getFullYear()} Secular House Foundation. All Rights
+          Reserved.
+        </p>
       </div>
     </footer>
   );

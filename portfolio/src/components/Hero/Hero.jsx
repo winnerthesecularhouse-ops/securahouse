@@ -2,14 +2,18 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Hero.css";
 
 const slides = [
-  { title: "With Shri OM Birla , Hon'ble Speaker Of Loksabha", img: "2nd.png", alt: "Slide 1" },
-  { title: "With Ms. Mukti Sanyal, Principle Of Bharti College, DU", img: "3rd.png", alt: "Slide 2" },
-  { title: "With My SOL Updates Team", img: "4th.png", alt: "Slide 3" },
-  { title: "With Political Science DEPT. Of HINDU College, DU", img: "5th.png", alt: "Slide 4" },
-  { title: "With Political Science DEPT. Of BHASKARACHARYA College, DU Of Applied Sciences", img: "6th.png", alt: "Slide 5" },
-  { title: "With The Principle Of SHIVAJI College, DU", img: "7th.png", alt: "Slide 6" },
-  { title: "Books In This Series", img: "1st.png", alt: "Slide 7" },
-  { title: "ECHOES Of History : OLD VS NEW", img: "8th.png", alt: "Slide 8" }
+  { title: "Professor, Hansraj College, Mr. Prabhanshu Ojha", img: "Professor, Hansraj College, Mr. Prabhanshu Ojha.jpg", alt: "Slide 1" },
+  { title: "Speaker of Loksabha, Shri Om Birla", img: "Speaker of Loksabha, Shri Om Birla.jpg", alt: "Slide 2" },
+  { title: "Professor, Dayal Singh College, DU Vijay Verma", img: "Professor, Dayal Singh College, DU Vijay Verma.jpg", alt: "Slide 3" },
+  { title:"Principle, Shivaji College, DU Mr. Shiv Kumar Sahdev", img: "Principle, Shivaji College, DU Mr. Shiv Kumar Sahdev.jpg", alt: "Slide 4" },
+  { title: "Principle, Hindu College, DU Ms. Anju Srivastava", img: "Principle, Hindu College, DU Ms. Anju Srivastava.jpg", alt: "Slide 5" },
+
+  { title: "Principle, Bharati College, DU Ms. Mukti Sanyal", img: "Principle, Bharati College, DU Ms. Mukti Sanyal.jpg", alt: "Slide 7" },
+  { title:"President of India, Shri Ram Nath Kovind", img: "President of India, Shri Ram Nath Kovind.JPG", alt: "Slide 8" },
+  { title:"President of India, Shri Pranav Mukherjee", img: "President of India, Shri Pranav Mukherjee.jpg", alt: "Slide 9" },
+  { title:"Formr Cabinet Minister Mr. Prakash JavadekarFormr Cabinet Minister Mr. Prakash Javadekar", img: "Formr Cabinet Minister Mr. Prakash Javadekar.jpg", alt: "Slide 10" },
+  { title:"Former Deputy PM of India, Shri Lal Krishna Advani", img:"Former Deputy PM of India, Shri Lal Krishna Advani.jpg", alt: "Slide 11" },
+  { title:"The Secular House Founders", img:"485767674_1185122856956976_7338635603558959400_n.jpg", alt: "Slide 12" }
 ];
 
 const Hero = () => {

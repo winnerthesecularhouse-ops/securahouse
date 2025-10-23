@@ -1,7 +1,7 @@
 /* AllAchievers.css */
 .all-achievers {
   padding: 60px 0;
-  background:linear-gradient(135deg, rgb(248, 249, 250), rgb(233, 236, 239));
+  background: linear-gradient(313deg, #4a9a91 0%, #3a5754 100%);
 }
 
 .all-achievers .container {
@@ -17,12 +17,12 @@
 
 .header h1 {
   font-size: 2.2rem;
-  color: #2d3748;
+  color: #f8f8f8;
   margin: 0 0 8px 0;
 }
 
 .header .subtitle {
-  color: #4a5568;
+  color: #f8f8f8;
   margin-bottom: 10px;
 }
 

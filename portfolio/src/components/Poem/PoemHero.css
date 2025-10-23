@@ -1,0 +1,100 @@
+.poem-hero-section {
+    width: 100%;
+    padding: 60px 20px;
+    background: linear-gradient(313deg, #4a9a91 0%, #3a5754 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+  }
+  
+  .poem-hero-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 40px;
+    align-items: center; /* image vertically centered */
+  }
+  
+  /* Left Image */
+  .poem-image {
+    flex: 1;
+    display: flex;
+    align-items: center; /* vertical center */
+  }
+  
+  .poem-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* Right Poem Content */
+  .poem-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .poem-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 15px; /* reduced gap */
+    color: var(--gold);
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .poem-text {
+    font-size: 1.2rem;
+    line-height: 1.5; /* reduced line height */
+    max-height: 550px; /* set fixed max height */
+    overflow-y: auto; /* scroll if content exceeds height */
+    padding-right: 10px;
+  }
+  
+  /* Scrollbar styling */
+  .poem-text::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .poem-text::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
+  
+  .poem-text p {
+    margin-bottom: 10px; /* reduced vertical gap */
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 992px) {
+    .poem-hero-container {
+      flex-direction: column;
+      gap: 30px;
+    }
+  
+    .poem-title {
+      text-align: center;
+      font-size: 2.2rem;
+    }
+  
+    .poem-text {
+      font-size: 1.1rem;
+      max-height: none; /* remove scroll on mobile */
+      overflow-y: visible;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .poem-title {
+      font-size: 1.8rem;
+    }
+  
+    .poem-text {
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+  }
+  

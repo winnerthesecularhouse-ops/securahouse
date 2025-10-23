@@ -3,7 +3,7 @@ import "./SuccessStories.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "https://portfolio-x0gj.onrender.com/api/achievers";
+const API_URL = "http://localhost:5000/api/achievers";
 
 const SuccessStories = () => {
   const [achievers, setAchievers] = useState([]);
@@ -43,19 +43,21 @@ const SuccessStories = () => {
 
   const handleManualNavigation = (direction) => {
     setIsAutoPlaying(false);
-    if (direction === "prev") prevSlide();
-    else nextSlide();
+    if (direction === 'prev') {
+      prevSlide();
+    } else {
+      nextSlide();
+    }
     setTimeout(() => setIsAutoPlaying(true), 5000);
   };
 
   return (
-    <section className="success-stories" aria-label="Success Stories">
+    <section id="achievements" className="success-stories" aria-label="Success Stories">
       <div className="container">
-        <h2>Pearls of Political Science</h2>
+        <h2>Our Gallery</h2>
 
         <div className="stories-carousel">
           <button
-            className="nav-button prev"
             onClick={() => handleManualNavigation("prev")}
             aria-label="Previous slide"
           >
@@ -123,7 +125,7 @@ const SuccessStories = () => {
             className="cta-button"
             style={{ textDecoration: "none" }}
           >
-            🏆 VIEW ALL ACHIEVERS
+            🖼️ VIEW ALL Gallery
           </Link>
         </div>
       </div>
