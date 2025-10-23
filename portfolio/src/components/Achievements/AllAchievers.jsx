@@ -3,7 +3,7 @@ import "./AllAchievers.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/achievers";
+const API_URL = "https://securahouse.onrender.com/api/achievers";
 
 // 🔹 Cloudinary optimized image helper
 const optimizeImage = (url, width = 400, height = 400) => {
