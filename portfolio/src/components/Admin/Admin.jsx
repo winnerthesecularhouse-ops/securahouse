@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Admin.css';
-import { useReviews } from '../context/ReviewsContext';
 
 
 

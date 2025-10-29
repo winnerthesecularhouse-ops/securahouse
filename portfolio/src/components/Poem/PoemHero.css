@@ -7,6 +7,12 @@
     align-items: center;
     color: #ffffff;
   }
+
+  @media (max-width: 600px) {
+    .poem-hero-section {
+     margin-top: 60px;
+    }
+  }
   
   .poem-hero-container {
     display: flex;

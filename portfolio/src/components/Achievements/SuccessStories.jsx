@@ -58,6 +58,7 @@ const SuccessStories = () => {
 
         <div className="stories-carousel">
           <button
+          className="nav-button prev"
             onClick={() => handleManualNavigation("prev")}
             aria-label="Previous slide"
           >

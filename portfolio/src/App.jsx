@@ -7,7 +7,7 @@ import Hero from './components/Hero/Hero'
 import AboutHero from './components/About/AboutHero'
 import SuccessStories from './components/Achievements/SuccessStories'
 import AllAchievers from './components/Achievements/AllAchievers'
-import { ReviewsProvider } from './components/context/ReviewsContext'
+
 import NGOGallery from './components/NGOGallery/NGOGallery'
 import Founders from './components/Founders/Founders'
 import PoemHero from './components/Poem/PoemHero'
@@ -23,7 +23,7 @@ function App() {
   return (
     <> 
       <BrowserRouter>
-        <ReviewsProvider>
+        
         <TopBar />
           <Navbar />
           <Routes>
@@ -46,7 +46,7 @@ function App() {
             <Route path="/admin" element={<RequireAuth><Admin /></RequireAuth>} />
             <Route path="/donateus" element={<DonateUs />} />
             </Routes>
-        </ReviewsProvider>
+        
       </BrowserRouter>
     </>
   )
